@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sca://schemas/knowledge-artifact.schema.json",
+  "title": "KnowledgeArtifact",
+  "description": "An archival artifact (document, recording, photograph) linked to a capability, with consent and access control.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["id", "title"],
+  "properties": {
+    "id": { "type": "string" },
+    "capability_id": { "type": ["string", "null"] },
+    "title": { "type": "string" },
+    "artifact_type": { "type": ["string", "null"] },
+    "description": { "type": ["string", "null"] },
+    "file_url": { "type": ["string", "null"] },
+    "language": { "type": ["string", "null"] },
+    "creator": { "type": ["string", "null"] },
+    "consent_status": { "type": ["string", "null"] },
+    "access_level": { "type": ["string", "null"], "enum": ["PUBLIC", "RESEARCH", "COMMUNITY", "RESTRICTED", "PRIVATE", null] },
+    "verification_status": { "type": ["string", "null"] },
+    "created_at": { "type": ["string", "null"] },
+    "updated_at": { "type": ["string", "null"] }
+  }
+}

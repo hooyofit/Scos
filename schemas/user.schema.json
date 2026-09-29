@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sca://schemas/user.schema.json",
+  "title": "User",
+  "description": "An account. The internal _auth block (salt, hash, provider) is managed by the auth provider and is never exported, displayed or logged.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["id", "name", "email", "role"],
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "email": { "type": "string" },
+    "role": { "type": "string", "enum": ["public", "researcher", "community_steward", "practitioner", "apprentice", "technician", "workshop", "trainer", "reviewer", "project_manager", "regional_administrator", "national_administrator"] },
+    "phone": { "type": ["string", "null"] },
+    "language": { "type": ["string", "null"] },
+    "region": { "type": ["string", "null"] },
+    "profile_photo": { "type": ["string", "null"] },
+    "bio": { "type": ["string", "null"] },
+    "status": { "type": ["string", "null"] },
+    "created_at": { "type": ["string", "null"] },
+    "updated_at": { "type": ["string", "null"] },
+    "_auth": {
+      "type": ["object", "null"],
+      "description": "Credential material. Never part of an export.",
+      "properties": {
+        "provider": { "type": "string" },
+        "salt": { "type": "string" },
+        "password_hash": { "type": "string" }
+      }
+    }
+  }
+}

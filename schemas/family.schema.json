@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sca://schemas/family.schema.json",
+  "title": "CapabilityFamily",
+  "description": "One of the 12 permanent top-level capability families. Codes: W L A P F C H M R S T G.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "id",
+    "code",
+    "name"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "display_order": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "created_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "updated_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

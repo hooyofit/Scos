@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sca://schemas/modern-equivalent.schema.json",
+  "title": "ModernEquivalent",
+  "description": "Reserved future entity: Stages 8-9: modern technology equivalents of capabilities. Fields are deliberately not fixed yet; this stub keeps the schema registry complete and extensible. No fabricated data.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "id"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "updated_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

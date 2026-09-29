@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sca://schemas/marketplace-listing.schema.json",
+  "title": "MarketplaceListing",
+  "description": "Stage 13 operational entity: a discovery-and-connection record that a capability service can be PROVIDED (OFFER) or is NEEDED (NEED), anchored to existing authoritative records. Exactly ONE Stage 13 entity: no MarketplaceProvider, MarketplaceMatch, MarketplaceAvailability, MarketplaceRating, MarketplaceReview, MarketplaceRequest, MarketplaceOffer, MarketplaceScore, MatchScore, ProviderScore, ListingScore, TrustLevel, VerificationScore, ProviderRanking, ListingRanking, PopularityCount, ResponseCount or any other shadow entity exists. The listing references — never duplicates or re-governs — the frozen providers (Stage 5 Practitioner/Organization/TrainingProgram, Stage 8 Workshop/RepairCapability, Stage 1 Capability/Location). Publication requires an independent review gate (creator/reviewer separation at every role level including NATIONAL); a published listing is a documented marketplace assertion, never a guarantee of service quality. A provider that later becomes unavailable renders HONESTLY ('Referenced provider no longer available') and is never auto-mutated: a human pauses or withdraws it. Lifecycle: DRAFT -> SUBMITTED -> PUBLISHED with PUBLISHED <-> PAUSED, SUBMITTED -> REJECTED and PUBLISHED/PAUSED -> WITHDRAWN; REJECTED and WITHDRAWN are terminal and immutable; no resurrection. Matching is a derived read-only view. NO personal contact fields exist on a listing (connection happens through existing provider/profile visibility rules). No pricing, payment, compensation, booking, scheduling, messaging, rating, ranking or delivery field of any kind exists. No fabricated data.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "id",
+    "listing_kind",
+    "service_kind",
+    "provider_type",
+    "provider_id",
+    "location_scope",
+    "status"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "listing_kind": {
+      "type": "string",
+      "enum": ["OFFER", "NEED"],
+      "description": "OFFER: this provider can perform/teach/repair/produce/reproduce the referenced capability services. NEED: this actor is looking for such a service. Both kinds share one record shape; matching pairs published OFFERs with published NEEDs."
+    },
+    "service_kind": {
+      "type": "string",
+      "enum": ["REPAIR", "MAINTENANCE", "TRAINING", "APPRENTICESHIP_HOSTING", "TECHNICAL_ASSISTANCE", "FABRICATION", "LOCAL_PRODUCTION", "AGRICULTURAL_SERVICES", "FISHERIES_SERVICES", "WATER_SERVICES", "ENVIRONMENTAL_KNOWLEDGE", "RESEARCH_FIELD_SERVICES"],
+      "description": "Frozen twelve-value controlled vocabulary (Stage 13 scope v1.0 §6 / authorization §6). No additional service kind may be introduced without a future scope amendment. Never free text."
+    },
+    "provider_type": {
+      "type": "string",
+      "enum": ["PRACTITIONER", "ORGANIZATION", "WORKSHOP", "TRAINING_PROGRAM"],
+      "description": "Polymorphic reference to an EXISTING frozen entity. Stage 13 never manufactures provider identity or provider competence, and never creates a marketplace provider record of any kind."
+    },
+    "provider_id": {
+      "type": "string",
+      "description": "Canonical id of the referenced provider record. At publication the provider must resolve to a publicly visible record under its OWN stage's rules. After publication, a later-retired provider renders honestly and never auto-mutates the listing."
+    },
+    "capability_ids": {
+      "type": "array",
+      "description": "Zero or more canonical Stage 1 Capability references. Zero links is honest ('Not yet documented'), never filled with a guess. Stage 13 never creates capability records."
+    },
+    "repair_capability_id": {
+      "type": "string",
+      "description": "Optional canonical Stage 8 RepairCapability reference for repair-related discovery. Stage 13 never creates repair-capability records."
+    },
+    "location_ids": {
+      "type": "array",
+      "description": "Canonical Stage 1 Location references only. location_scope SPECIFIC requires at least one valid location; ANYWHERE does not require one. No Region entity, no radius, no distance or catchment calculation, no inferred locations."
+    },
+    "location_scope": {
+      "type": "string",
+      "enum": ["SPECIFIC", "ANYWHERE"],
+      "description": "Whether the listing applies to specific documented locations or is not location-bound. Matching uses location reference overlap only."
+    },
+    "availability_status": {
+      "type": "string",
+      "enum": ["BY_ARRANGEMENT", "SCHEDULED_WINDOWS", "SEASONAL", "LIMITED", "UNKNOWN"],
+      "description": "Frozen five-value declared availability vocabulary (default UNKNOWN = not yet documented). Declared information only — NOT a calendar, booking system or schedule engine. Amending availability on a published listing is an audited amendment; structural changes require withdraw + successor listing."
+    },
+    "availability_note": {
+      "type": "string",
+      "description": "Optional free-text explanation of the declared availability. Never machine-interpreted; never a time-slot reservation."
+    },
+    "description": {
+      "type": "string",
+      "description": "The listing's own assertion: what exactly is offered or needed. The reviewer checks it for unsupported or unverifiable claims; publication never certifies service quality. Defaults to 'Not yet documented'."
+    },
+    "on_behalf_of": {
+      "type": ["object", "null"],
+      "description": "Present only when the creator acts on behalf of the referenced provider (e.g. a coordinator listing a practitioner). Records the reason; the acting user is the record's created_by. Always explicitly audited."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["DRAFT", "SUBMITTED", "PUBLISHED", "PAUSED", "REJECTED", "WITHDRAWN"],
+      "description": "Marketplace lifecycle. DRAFT is the only fully editable state (creator only, offline-creatable, never public). SUBMITTED is locked pending independent review. PUBLISHED is publicly discoverable subject to privacy rules. PAUSED is reversible and audited (absent from matching). REJECTED and WITHDRAWN are terminal and immutable with mandatory recorded reason, actor and timestamp. No automatic lifecycle transitions of any kind."
+    },
+    "reviewer": { "type": ["string", "null"], "description": "Independent reviewer who published or rejected the listing (never the creator, at any role level including NATIONAL)." },
+    "reviewed_at": { "type": ["string", "null"] },
+    "review_reason": { "type": ["string", "null"], "description": "Publication or rejection reason recorded by the reviewer." },
+    "withdrawn_by": { "type": ["string", "null"] },
+    "withdrawn_at": { "type": ["string", "null"] },
+    "withdraw_reason": { "type": ["string", "null"] },
+    "notes": { "type": "string" },
+    "created_by": { "type": "string" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "version": { "type": "string" },
+    "history": { "type": "array", "description": "Byte-exact transition and amendment history (audited; never rewritten)." }
+  },
+  "field-prohibited": {
+    "description": "Structural privacy and boundary pins (enforced by the model and the workflow, tested by the integrity suite): phone, email, street address, messaging handle and any private contact field are PROHIBITED; price, currency, rate, fee, compensation, commission, escrow, invoice, payment and transaction fields are PROHIBITED; score, ranking, rating, trust, popularity, demand and response-count fields are PROHIBITED; region, radius, distance and catchment fields are PROHIBITED; intervention_id, pilot_project_id and any Stage 10/11 lifecycle coupling is PROHIBITED in v1.0."
+  }
+}

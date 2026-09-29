@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sca://schemas/evidence-source.schema.json",
+  "title": "EvidenceSource",
+  "description": "A real source of evidence. Nothing in this collection may be fabricated.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["id", "title"],
+  "properties": {
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "source_type": { "type": ["string", "null"] },
+    "author": { "type": ["string", "null"] },
+    "organization": { "type": ["string", "null"] },
+    "publication_date": { "type": ["string", "null"] },
+    "url": { "type": ["string", "null"] },
+    "description": { "type": ["string", "null"] },
+    "evidence_level": { "type": ["string", "null"], "enum": ["E0", "E1", "E2", "E3", "E4", "E5", null] },
+    "region": { "type": ["string", "null"] },
+    "verification_status": { "type": ["string", "null"] },
+    "created_at": { "type": ["string", "null"] }
+  }
+}

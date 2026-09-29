@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sca://schemas/pilot-project.schema.json",
+  "title": "PilotProject",
+  "description": "Stage 11 operational entity: a regional coordination umbrella that organizes existing capability-strengthening activities (Stage 10 interventions, Stage 5 organizations / training programs / practitioners, Stage 8 workshops) in a defined regional scope. A pilot COORDINATES; it never re-governs: it holds no outcome field of any kind, and the outcomes of constituent interventions remain governed by Stage 10. Exactly ONE Stage 11 entity: no Region, PilotOutcome, PilotParticipant, PilotMetric, PilotScore, PilotPriority, PilotMeasurement or any other shadow entity exists. Regional scope is expressed only through canonical Stage 1 Location references; there is no Region entity and no geographic RBAC. census_snapshot_id references an immutable Stage 6 snapshot (a dated 'began against' reference, never a live baseline). Lifecycle: PROPOSED -> APPROVED -> ACTIVE -> CONCLUDED with CANCELLED reachable from PROPOSED/APPROVED/ACTIVE; CONCLUDED and CANCELLED are terminal and immutable; no resurrection and no RETIRED state. No fabricated data.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "id",
+    "name",
+    "status"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "name": {
+      "type": "string",
+      "description": "Human-readable pilot name."
+    },
+    "objective": {
+      "type": "string",
+      "description": "What the pilot coordinates toward (required for approval)."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["PROPOSED", "APPROVED", "ACTIVE", "CONCLUDED", "CANCELLED"],
+      "description": "Coordination lifecycle. APPROVED may have zero constituents (plan-first); ACTIVE requires at least one valid constituent activity (intervention, organization, workshop or training program). CONCLUDED is an administrative terminal state that NEVER implies success; CANCELLED is terminal with a mandatory recorded reason. No outcome field exists on a pilot."
+    },
+    "location_ids": {
+      "type": "array",
+      "description": "Canonical Stage 1 Location references. The displayed regional label derives from / is validated against these records; no Region entity, no free-floating regional identity, no invented coordinates."
+    },
+    "intervention_ids": {
+      "type": "array",
+      "description": "Constituent Stage 10 CapabilityIntervention references. Many-to-many membership that transfers NO authority: adding/removing a pilot never modifies the intervention; Stage 10 remains the sole authority over intervention lifecycle and outcome."
+    },
+    "organization_ids": { "type": "array", "description": "Constituent Stage 5 Organization references." },
+    "workshop_ids": { "type": "array", "description": "Constituent Stage 8 Workshop references." },
+    "training_program_ids": { "type": "array", "description": "Constituent Stage 5 TrainingProgram references." },
+    "practitioner_ids": {
+      "type": "array",
+      "description": "Stage 5 Practitioner references, subject to the existing privacy/masking rules everywhere; references only, never shadow records."
+    },
+    "census_snapshot_id": {
+      "type": ["string", "null"],
+      "description": "Optional reference to an IMMUTABLE Stage 6 census snapshot: 'this pilot began against Census Snapshot X' — dated, versioned in the UI, never modified or regenerated here, never a live baseline."
+    },
+    "reviewer": { "type": ["string", "null"], "description": "Approver identity (never the creator; creator/approver separation applies at every role level including NATIONAL)." },
+    "review_reason": { "type": ["string", "null"] },
+    "approved_at": { "type": ["string", "null"] },
+    "activated_at": { "type": ["string", "null"] },
+    "concluded_at": { "type": ["string", "null"] },
+    "cancelled_at": { "type": ["string", "null"] },
+    "last_reason": { "type": ["string", "null"] },
+    "created_by": { "type": ["string", "null"] },
+    "created_at": { "type": ["string", "null"] },
+    "updated_at": { "type": ["string", "null"] },
+    "version": { "type": ["string", "null"], "description": "History/architecture bookkeeping (audited amendments and transitions; the full audit trail lives in audit_log)." },
+    "history": { "type": "array" }
+  }
+}

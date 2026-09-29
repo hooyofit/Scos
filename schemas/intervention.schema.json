@@ -1,0 +1,169 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sca://schemas/intervention.schema.json",
+  "title": "CapabilityIntervention",
+  "description": "Stage 10 operational entity: a human-created planning record for a capability-strengthening action. Exactly ONE Stage 10 entity: no InterventionMeasurement, InterventionOutcome, InterventionPlan, InterventionProject or InterventionEvaluation exists (Measurement/Indicator stay deferred to Stage 12; outcome evidence flows through existing Stage 3/4 records). Completion of an activity never implies a successful outcome: outcome status is a separate reviewer-governed field with the honest default UNKNOWN, so COMPLETED + UNKNOWN is valid. NO duplicate-signature guard: competing interventions for the same target are legitimate. A CapabilityIntervention is NOT a graph node. No fabricated data.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "id",
+    "name",
+    "intervention_type",
+    "status"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "name": {
+      "type": "string",
+      "description": "Human-readable intervention name."
+    },
+    "description": { "type": "string" },
+    "objective": {
+      "type": "string",
+      "description": "What the intervention should achieve (required for submission)."
+    },
+    "intervention_type": {
+      "type": "string",
+      "enum": [
+        "KNOWLEDGE_DOCUMENTATION", "KNOWLEDGE_ARCHIVAL", "KNOWLEDGE_VALIDATION", "KNOWLEDGE_TRANSLATION", "KNOWLEDGE_TRANSMISSION",
+        "PEOPLE_APPRENTICESHIP", "PEOPLE_TECHNICIAN_TRAINING", "PEOPLE_TRAINER_DEVELOPMENT", "PEOPLE_PRACTITIONER_SUCCESSION",
+        "INFRASTRUCTURE_WORKSHOP", "INFRASTRUCTURE_WATER_SYSTEM", "INFRASTRUCTURE_STORAGE", "INFRASTRUCTURE_PROCESSING", "INFRASTRUCTURE_COMMUNICATIONS", "INFRASTRUCTURE_ENERGY", "INFRASTRUCTURE_TRANSPORT",
+        "REPAIR_CAPACITY", "REPAIR_MAINTENANCE", "REPAIR_SPARE_PARTS", "REPAIR_LOCAL_FABRICATION", "REPAIR_TOOLING",
+        "PRODUCTION_LOCAL_MANUFACTURING", "PRODUCTION_MATERIAL_SUBSTITUTION", "PRODUCTION_EQUIPMENT_PRODUCTION",
+        "RESILIENCE_FALLBACK_SYSTEM", "RESILIENCE_REDUNDANCY", "RESILIENCE_EMERGENCY_RESERVE", "RESILIENCE_GEOGRAPHIC_DIVERSIFICATION",
+        "MODERNIZATION_TECHNOLOGY_IMPROVEMENT", "MODERNIZATION_HYBRID_SYSTEM", "MODERNIZATION_EFFICIENCY_IMPROVEMENT", "MODERNIZATION_SAFETY_IMPROVEMENT",
+        "VALIDATION_FIELD_MEASUREMENT", "VALIDATION_LABORATORY", "VALIDATION_TECHNICAL_COMPARISON", "VALIDATION_CONTROLLED_PILOT"
+      ],
+      "description": "Flat controlled vocabulary (category_subtype composite codes); classification only, no evaluative meaning."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["DRAFT", "SUBMITTED", "UNDER_REVIEW", "APPROVED", "ACTIVE", "SUSPENDED", "COMPLETED", "CANCELLED"],
+      "description": "Lifecycle. COMPLETED/CANCELLED are terminal historical records. UNDER_REVIEW -> DRAFT is a return for correction; a true discard is UNDER_REVIEW -> CANCELLED."
+    },
+    "problem_description": {
+      "type": "string",
+      "description": "Free-form problem text only where no canonical Stage 8 FailureScenario exists; failure_scenario_ids reference the canonical record otherwise."
+    },
+    "observed_condition": { "type": "string" },
+    "implementation_region": { "type": "string" },
+    "intended_beneficiaries": {
+      "type": "string",
+      "description": "Descriptive; UNKNOWN where not documented, never inferred."
+    },
+    "activities": { "type": "array" },
+    "required_capabilities": { "type": "array" },
+    "required_skills": { "type": "array" },
+    "required_equipment": { "type": "array" },
+    "required_materials": { "type": "array" },
+    "required_tools": { "type": "array" },
+    "required_infrastructure": { "type": "array" },
+    "required_energy": { "type": "array" },
+    "required_spare_parts": { "type": "array" },
+    "required_repair_capability": { "type": "array" },
+    "required_training": { "type": "array" },
+    "institutional_support": { "type": "array" },
+    "external_dependencies": { "type": "array" },
+    "dependencies": { "type": "array" },
+    "fallback_arrangement": { "type": "string" },
+    "training_requirements": { "type": "string" },
+    "estimated_duration": { "type": "string" },
+    "maintenance_requirements": { "type": "string" },
+    "reproduction_pathway": {
+      "type": "string",
+      "description": "Where the intervention depends on human capability; Stage 5 remains authoritative for competence."
+    },
+    "assumptions": { "type": "array" },
+    "limitations": { "type": "string" },
+    "self_contained": {
+      "type": "boolean",
+      "description": "Explicit auditable claim that no external dependencies exist (No Orphan Project Rule); never a default assumption."
+    },
+    "depends_on_human_capability": {
+      "type": "boolean",
+      "description": "When true, approval requires the critical roles to be recorded (presence-of-value: UNKNOWN passes, blank fails)."
+    },
+    "critical_roles": {
+      "type": "array",
+      "description": "[{ role, practitioner_id, status }] with status IDENTIFIED (canonical Stage 5 practitioner) or UNKNOWN (honest, never fabricated)."
+    },
+    "estimated_implementation_cost": { "type": "string" },
+    "estimated_operating_cost": { "type": "string" },
+    "estimated_maintenance_cost": { "type": "string" },
+    "local_labor_requirement": { "type": "string" },
+    "imported_inputs": { "type": "string" },
+    "local_inputs": { "type": "string" },
+    "revenue_model": { "type": "string" },
+    "replacement_cost": { "type": "string" },
+    "lifecycle_considerations": { "type": "string" },
+    "resource_consumption": { "type": "string" },
+    "energy_requirements": { "type": "string" },
+    "waste": { "type": "string" },
+    "emissions_documented": { "type": "string" },
+    "water_use": { "type": "string" },
+    "material_use": { "type": "string" },
+    "environmental_risks": { "type": "string" },
+    "climate_exposure": { "type": "string" },
+    "repairability_notes": { "type": "string" },
+    "end_of_life": { "type": "string" },
+    "safety_considerations": {
+      "type": "string",
+      "description": "Safety-sensitive interventions require explicit safety documentation; the medical safety rule stays with Stage 3."
+    },
+    "environmental_considerations": { "type": "string" },
+    "capability_ids": { "type": "array", "description": "Stage 2 capabilities (canonical references; never copied or shadowed)." },
+    "family_ids": { "type": "array" },
+    "research_project_ids": { "type": "array", "description": "Stage 4 ResearchProjects (evidence-collection stays with Stage 4)." },
+    "evidence_source_ids": { "type": "array", "description": "Stage 3 evidence sources; external research enters ONLY through this architecture." },
+    "knowledge_artifact_ids": { "type": "array" },
+    "field_observation_ids": { "type": "array" },
+    "failure_scenario_ids": { "type": "array", "description": "Stage 8 FailureScenarios; reference-not-copy (no duplicated asset/symptom/category data)." },
+    "recovery_profile_ids": { "type": "array", "description": "Stage 9 RecoveryProfiles (recovery stays authoritative there)." },
+    "practitioner_ids": { "type": "array", "description": "Stage 5 practitioners; privacy/masking rules remain authoritative." },
+    "apprentice_ids": { "type": "array" },
+    "training_program_ids": { "type": "array" },
+    "competence_assessment_ids": { "type": "array" },
+    "certification_ids": { "type": "array" },
+    "organization_ids": { "type": "array" },
+    "location_ids": { "type": "array", "description": "Canonical locations; precision stays explicitly controlled, never inferred." },
+    "workshop_ids": { "type": "array" },
+    "repair_capability_ids": { "type": "array" },
+    "spare_part_ids": { "type": "array" },
+    "tool_ids": { "type": "array" },
+    "material_ids": { "type": "array" },
+    "resource_ids": { "type": "array" },
+    "energy_source_ids": { "type": "array" },
+    "responsible_organization_id": {
+      "type": ["string", "null"],
+      "description": "Canonical Stage 5 Organization; no Stage 10 organization entity exists."
+    },
+    "outcome_status": {
+      "type": "string",
+      "enum": ["UNKNOWN", "SUCCESSFUL", "MIXED", "UNSUCCESSFUL", "INSUFFICIENT_EVIDENCE"],
+      "description": "Categorical and reviewer-governed; never a score, never self-declared; UNKNOWN default; COMPLETED + UNKNOWN is valid."
+    },
+    "outcome_reviewer": { "type": ["string", "null"] },
+    "outcome_reviewed_at": { "type": ["string", "null"] },
+    "outcome_reason": { "type": ["string", "null"] },
+    "outcome_evidence_source_ids": { "type": "array", "description": "Outcome evidence: existing Stage 3/4 records only; required when changing outcome from UNKNOWN." },
+    "outcome_knowledge_artifact_ids": { "type": "array" },
+    "outcome_field_observation_ids": { "type": "array" },
+    "submitted_at": { "type": ["string", "null"] },
+    "reviewer": { "type": ["string", "null"] },
+    "review_reason": { "type": ["string", "null"] },
+    "approved_at": { "type": ["string", "null"] },
+    "activated_at": { "type": ["string", "null"] },
+    "suspended_at": { "type": ["string", "null"] },
+    "completed_at": { "type": ["string", "null"] },
+    "cancelled_at": { "type": ["string", "null"] },
+    "last_reason": { "type": ["string", "null"] },
+    "created_by": { "type": ["string", "null"], "description": "Creator identity for the anti-self-approval guard (the RBAC matrix separates creator and review roles structurally)." },
+    "created_at": { "type": ["string", "null"] },
+    "updated_at": { "type": ["string", "null"] },
+    "version": { "type": "string" },
+    "history": {
+      "type": "array",
+      "description": "Audited version history: full snapshots with change_type EDIT/AMENDMENT/TRANSITION/OUTCOME and mandatory reasons — no silent mutation."
+    }
+  }
+}

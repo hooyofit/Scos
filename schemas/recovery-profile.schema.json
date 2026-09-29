@@ -1,0 +1,128 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sca://schemas/recovery-profile.schema.json",
+  "title": "RecoveryProfile",
+  "description": "Stage 9 operational entity: ONE documented recovery target of ONE recovery kind for ONE subject asset. The reserved 'fallback-system' concept is ABSORBED here (fallback-system.schema.json is kept only as an absorbed marker; there is exactly one RecoveryProfile entity, never two). A RecoveryProfile is NOT a graph node: it cites Stage 7 graph edges only as soft references. There is deliberately NO 'RETIRED' state: administrative retirement uses REJECTED with an explicit reason. No fabricated data.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "id",
+    "name",
+    "asset_type",
+    "asset_id",
+    "recovery_kind",
+    "target_type",
+    "target_id"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable profile name."
+    },
+    "asset_type": {
+      "type": "string",
+      "enum": ["CAPABILITY", "TOOL", "WORKSHOP", "ENERGY_SOURCE", "LOCATION"],
+      "description": "Subject asset type: exactly the Stage 8 asset types (Stage 7 graph node types)."
+    },
+    "asset_id": {
+      "type": "string",
+      "description": "Subject asset record id in the canonical collection."
+    },
+    "failure_scenario_id": {
+      "type": ["string", "null"],
+      "description": "Optional Stage 8 FailureScenario giving the failure context."
+    },
+    "recovery_kind": {
+      "type": "string",
+      "enum": ["FALLBACK_CAPABILITY", "REPAIR_NETWORK", "SUBSTITUTION", "FABRICATION", "EXTERNAL_SUPPORT"],
+      "description": "Exactly five frozen kinds; the kind decides which target collections are valid."
+    },
+    "target_type": {
+      "type": "string",
+      "enum": ["CAPABILITY", "REPAIR_CAPABILITY", "WORKSHOP", "SPARE_PART", "MATERIAL", "TOOL", "ORGANIZATION"],
+      "description": "Kind-appropriate target type (workflow- and import-enforced)."
+    },
+    "target_id": {
+      "type": "string",
+      "description": "Exactly one target reference; multiple targets require multiple profiles."
+    },
+    "description": {
+      "type": "string"
+    },
+    "conditions": {
+      "type": "string"
+    },
+    "required_resources": {
+      "type": "array"
+    },
+    "limitations": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "expected_recovery_time": {
+      "type": "string",
+      "description": "Descriptive free text; never a computed score."
+    },
+    "recovery_radius": {
+      "type": "string",
+      "description": "Descriptive free text; never a computed score."
+    },
+    "recovery_cost": {
+      "type": "string",
+      "description": "Descriptive free text; never a computed score."
+    },
+    "edge_citations": {
+      "type": "array",
+      "description": "Soft references to Stage 7 graph edges: never required, never hard-resolved, never auto-creating edges."
+    },
+    "source_ids": {
+      "type": "array",
+      "description": "Provenance: Stage 3 EvidenceSource ids (existing system)."
+    },
+    "knowledge_artifact_ids": {
+      "type": "array",
+      "description": "Provenance: Stage 3 KnowledgeArtifact ids (existing system)."
+    },
+    "field_observation_ids": {
+      "type": "array",
+      "description": "Provenance: Stage 4 FieldObservation ids (existing system)."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["PROPOSED", "DOCUMENTED", "VERIFIED", "REJECTED", "SUPERSEDED"],
+      "description": "Frozen lifecycle; no RETIRED state by design."
+    },
+    "reviewer": {
+      "type": ["string", "null"]
+    },
+    "reviewed_at": {
+      "type": ["string", "null"]
+    },
+    "review_reason": {
+      "type": ["string", "null"],
+      "description": "Explicit reason: required for VERIFIED, REJECTED (also administrative retirement) and supersession."
+    },
+    "supersedes_id": {
+      "type": ["string", "null"],
+      "description": "Set on supersession successors (Stage 8.1 pattern)."
+    },
+    "created_at": {
+      "type": ["string", "null"]
+    },
+    "updated_at": {
+      "type": ["string", "null"]
+    },
+    "version": {
+      "type": "string"
+    },
+    "history": {
+      "type": "array",
+      "description": "Audited lifecycle history (snapshots, never silent edits)."
+    }
+  }
+}

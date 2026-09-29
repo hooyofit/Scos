@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sca://schemas/fallback-system.schema.json",
+  "title": "FallbackSystem (absorbed)",
+  "description": "ABSORBED MARKER (Stage 9, frozen scope v2.1): the reserved 'fallback system' concept is absorbed by the single RecoveryProfile entity (see recovery-profile.schema.json), specifically its FALLBACK_CAPABILITY recovery kind and the fallbackReadiness view. There is exactly ONE Stage 9 entity — no second FallbackSystem entity is ever created. This stub is kept only so the schema registry remains complete and the absorption is auditable; it defines no fields and no records. No fabricated data.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "id"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "updated_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

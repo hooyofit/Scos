@@ -1,0 +1,167 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sca://schemas/practitioner.schema.json",
+  "title": "Practitioner",
+  "description": "A living practitioner. Privacy is structural: anonymity, consent and contact visibility are first-class fields; the private full name is access-controlled and never public without consent. No precise location is stored on this record.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "id",
+    "public_name"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "public_name": {
+      "type": "string"
+    },
+    "anonymous_option": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "experience_years": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "competence_level": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "region": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "can_teach": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "apprentice_capacity": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "verification_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "documentation_consent": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "contact_visibility": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "PUBLIC",
+        "RESEARCH",
+        "COMMUNITY",
+        "RESTRICTED",
+        "PRIVATE",
+        null
+      ]
+    },
+    "bio": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "updated_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "capabilities": {
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "services": {
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "languages": {
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "references": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "description": "References / referees, access-controlled."
+    },
+    "training_history": {
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "assessment_history": {
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "availability": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "organization": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

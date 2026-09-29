@@ -1,0 +1,19 @@
+{
+  "name": "Somali Capability Atlas",
+  "short_name": "SC Atlas",
+  "description": "An evidence-based capability atlas connecting Somali knowledge, people, technology, repair, training and resilience.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F7F5F0",
+  "theme_color": "#1F3B57",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

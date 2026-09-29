@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sca://schemas/notification.schema.json",
+  "title": "Notification",
+  "description": "Reserved future entity: Platform infrastructure: user notifications. Fields are deliberately not fixed yet; this stub keeps the schema registry complete and extensible. No fabricated data.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "id"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "updated_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

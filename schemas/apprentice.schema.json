@@ -1,0 +1,134 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sca://schemas/apprentice.schema.json",
+  "title": "Apprentice",
+  "description": "An apprenticeship relationship. Certification is based on demonstrated competence, not attendance.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "id",
+    "user_id",
+    "capability_id"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "capability_id": {
+      "type": "string"
+    },
+    "mentor_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "current_level": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7",
+        "L8",
+        "L9",
+        null
+      ]
+    },
+    "target_level": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7",
+        "L8",
+        "L9",
+        null
+      ]
+    },
+    "training_start": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "practical_hours": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "assessment_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "certification_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "updated_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "demonstrations_completed": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "assessments": {
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "employment": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "trainer_ready": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "portfolio": {
+      "type": [
+        "array",
+        "null"
+      ]
+    }
+  }
+}

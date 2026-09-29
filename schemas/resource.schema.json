@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sca://schemas/resource.schema.json",
+  "title": "Resource",
+  "description": "Reserved future entity: Stage 6/8: resources consumed or required by capabilities. Fields are deliberately not fixed yet; this stub keeps the schema registry complete and extensible. No fabricated data.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "id"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "updated_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

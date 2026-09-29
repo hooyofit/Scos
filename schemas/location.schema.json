@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sca://schemas/location.schema.json",
+  "title": "Location",
+  "description": "A geographic reference. privacy_level controls exposure; precise practitioner locations must never be public without consent.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["id"],
+  "properties": {
+    "id": { "type": "string" },
+    "country": { "type": ["string", "null"] },
+    "region": { "type": ["string", "null"] },
+    "district": { "type": ["string", "null"] },
+    "city": { "type": ["string", "null"] },
+    "locality": { "type": ["string", "null"] },
+    "latitude": { "type": ["number", "null"] },
+    "longitude": { "type": ["number", "null"] },
+    "privacy_level": { "type": ["string", "null"], "enum": ["PUBLIC", "RESEARCH", "COMMUNITY", "RESTRICTED", "PRIVATE", null] },
+    "created_at": { "type": ["string", "null"] },
+    "updated_at": { "type": ["string", "null"] }
+  }
+}
