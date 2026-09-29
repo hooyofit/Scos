@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Somali Capability Atlas</title>
+  <meta name="description" content="An evidence-based capability atlas connecting Somali knowledge, people, technology, repair, training and resilience.">
+  <meta name="theme-color" content="#1F3B57">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <a class="skip-link" href="#page-root">Skip to content</a>
+  <header id="nav-root" class="site-nav"></header>
+  <main id="page-root" class="site-main">
+    <div class="page-content"><p class="boot">Loading Somali Capability Atlas…</p></div>
+  </main>
+  <div id="footer-root"></div>
+  <noscript>
+    <p class="noscript-warning">
+      The Somali Capability Atlas needs JavaScript to run. All data is stored
+      locally on this device and can be exported as JSON at any time.
+    </p>
+  </noscript>
+
+  <!-- Classic scripts (not ES modules) so the app also runs from file://.
+       Order matters; see docs/architecture.md. -->
+  <script src="src/sca.js"></script>
+  <script src="config/app.config.js"></script>
+  <script src="src/i18n.js"></script>
+  <script src="src/data-layer/storage.js"></script>
+  <script src="src/data-layer/migration.js"></script>
+  <script src="src/models/enums.js"></script>
+  <script src="src/rbac/roles.js"></script>
+  <script src="src/rbac/permissions.js"></script>
+  <script src="src/models/shared.js"></script>
+  <script src="src/models/user.js"></script>
+  <script src="src/models/family.js"></script>
+  <script src="src/models/capability.js"></script>
+  <script src="src/models/practitioner.js"></script>
+  <script src="src/models/apprentice.js"></script>
+  <script src="src/models/evidence.js"></script>
+  <script src="src/models/location.js"></script>
+  <script src="src/models/knowledge-artifact.js"></script>
+  <script src="src/models/claim.js"></script>
+  <script src="src/models/consent.js"></script>
+  <script src="src/models/audit-log.js"></script>
+  <script src="src/models/research-project.js"></script>
+  <script src="src/models/research-session.js"></script>
+  <script src="src/models/field-observation.js"></script>
+  <script src="src/models/field-note.js"></script>
+  <script src="src/models/research-participant.js"></script>
+  <script src="src/models/field-media.js"></script>
+  <script src="src/models/research-queue.js"></script>
+  <script src="src/models/organization.js"></script>
+  <script src="src/models/apprenticeship.js"></script>
+  <script src="src/models/competence-assessment.js"></script>
+  <script src="src/models/training-program.js"></script>
+  <script src="src/models/capability-certification.js"></script>
+  <script src="src/models/census-methodology.js"></script>
+  <script src="src/models/capability-census.js"></script>
+  <script src="src/models/census-observation.js"></script>
+  <script src="src/models/census-snapshot.js"></script>
+  <script src="src/models/geographic-redundancy.js"></script>
+  <script src="src/models/graph-edge.js"></script>
+  <script src="src/models/workshop.js"></script>
+  <script src="src/models/resource.js"></script>
+  <script src="src/models/material.js"></script>
+  <script src="src/models/tool.js"></script>
+  <script src="src/models/energy-source.js"></script>
+  <script src="src/models/failure-scenario.js"></script>
+  <script src="src/models/repair-capability.js"></script>
+  <script src="src/models/spare-part.js"></script>
+  <script src="src/models/repair-record.js"></script>
+  <script src="src/models/recovery-profile.js"></script>
+  <script src="src/models/capability-intervention.js"></script>
+  <script src="src/models/pilot-project.js"></script>
+  <script src="src/models/measurement.js"></script>
+  <script src="src/models/indicator.js"></script>
+  <script src="src/models/marketplace-listing.js"></script>
+  <script src="src/models/capability-reserve.js"></script>
+  <script src="src/models/continuity-plan.js"></script>
+  <script src="src/models/capability-asset.js"></script>
+  <script src="src/graph/registry.js"></script>
+  <script src="src/data-layer/adapter.js"></script>
+  <script src="src/data-layer/transfer.js"></script>
+  <script src="src/audit/audit.js"></script>
+  <script src="src/evidence/workflow.js"></script>
+  <script src="src/research/queue.js"></script>
+  <script src="src/research/workflow.js"></script>
+  <script src="src/training/workflow.js"></script>
+  <script src="src/census/workflow.js"></script>
+  <script src="src/graph/workflow.js"></script>
+  <script src="src/repair/workflow.js"></script>
+  <script src="src/recovery/workflow.js"></script>
+  <script src="src/intervention/workflow.js"></script>
+  <script src="src/pilots/workflow.js"></script>
+  <script src="src/measurement/workflow.js"></script>
+  <script src="src/indicator/workflow.js"></script>
+  <script src="src/marketplace/workflow.js"></script>
+  <script src="src/reserve/workflow.js"></script>
+  <script src="src/scenario/workflow.js"></script>
+  <script src="data/indicator-definitions.js"></script>
+  <script src="src/observatory/views.js"></script>
+  <script src="data/families.js"></script>
+  <script src="data/capabilities.js"></script>
+  <script src="src/auth/interface.js"></script>
+  <script src="src/auth/local.js"></script>
+  <script src="src/state/state.js"></script>
+  <script src="src/components/ui.js"></script>
+  <script src="src/components/navbar.js"></script>
+  <script src="src/components/footer.js"></script>
+  <script src="src/router/router.js"></script>
+  <script src="src/pages/home.js"></script>
+  <script src="src/pages/capabilities.js"></script>
+  <script src="src/pages/capability.js"></script>
+  <script src="src/pages/families.js"></script>
+  <script src="src/pages/practitioners.js"></script>
+  <script src="src/pages/apprentices.js"></script>
+  <script src="src/pages/knowledge.js"></script>
+  <script src="src/pages/evidence.js"></script>
+  <script src="src/pages/field-research.js"></script>
+  <script src="src/pages/census.js"></script>
+  <script src="src/pages/graph.js"></script>
+  <script src="src/pages/repair.js"></script>
+  <script src="src/pages/recovery.js"></script>
+  <script src="src/pages/intervention.js"></script>
+  <script src="src/pages/pilots.js"></script>
+  <script src="src/pages/measurements.js"></script>
+  <script src="src/pages/indicators.js"></script>
+  <script src="src/pages/marketplace.js"></script>
+  <script src="src/pages/reserves.js"></script>
+  <script src="src/pages/scenarios.js"></script>
+  <script src="src/pages/observatory.js"></script>
+  <script src="src/pages/map.js"></script>
+  <script src="src/pages/dashboard.js"></script>
+  <script src="src/pages/export.js"></script>
+  <script src="src/pages/about.js"></script>
+  <script src="src/pages/people.js"></script>
+  <script src="src/pages/training.js"></script>
+  <script src="src/pages/signin.js"></script>
+  <script src="src/pages/signup.js"></script>
+  <script src="src/pages/reset.js"></script>
+  <script src="src/pages/profile.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>
